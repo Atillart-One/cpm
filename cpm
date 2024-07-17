@@ -464,6 +464,25 @@ _guix() {
   esac
 }
 
+_nix() {
+  case "$OP" in
+    install) nix profile install nixpkgs#"$@";;
+    remove)  nix profile remove "$@";;
+    list)    nix profile list;;
+    count)   nix profile list | tot;;
+    update)  update)
+      pem "unsupported: repo list updates when packages are upgraded."
+      ;;
+    upgrade) nix profile upgrade --all;;
+    search)  nix search nixpkgs "$@";;
+    show)    nix search nixpkgs "$@";;
+    f*)
+      pem "unsupported: this feature is functionally useless in this PM"
+      ;;
+    clean)   nix store gc;;
+  esac
+}
+
 _pkg_() {
   case "$OP" in
     install) su_do pkg_add "$@";;
@@ -545,6 +564,9 @@ elif ! [ "$(uname -s)" = "Darwin" ]; then
   elif has guix; then
     # local (non-system-wide) guix
     _guix "$@"
+  elif has nix; then
+    # local (non-system-wide) nix
+    _nix "$@"
   elif has pkg_info; then
     # openbsd
     _pkg_ "$@"
