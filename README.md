@@ -37,6 +37,7 @@ sudo make install
 - emerge (Gentoo)
 - dnf (Fedora)
 - guix (non-system-wide Guix)
+- nix (non-system-wide Nix)
 - Homebrew
 - lunar (Lunar)
 - MacPorts (macOS)
@@ -53,7 +54,6 @@ sudo make install
 
 - Cargo
 - Flatpak
-- Nix
 - NPM
 - Pip
 - Snap
